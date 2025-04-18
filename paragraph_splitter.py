@@ -1,10 +1,6 @@
 import re
 import sys
 
-# ⚠️ IMPORTANT:
-# Before running this script, make sure the source text file has been manually cleaned.
-# Remove the title page, preface, table of contents, and index.
-# Only the main document content should remain in the file.
 
 def is_new_paragraph(line):
     line = line.strip()
