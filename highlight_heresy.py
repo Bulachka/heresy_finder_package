@@ -3,14 +3,8 @@ import re
 from docx import Document
 from docx.shared import RGBColor
 from collections import defaultdict
+from patterns import raw_patterns
 
-# Heretical word patterns (all should match from the beginning of a word)
-raw_patterns = [
-    "chetzer.*", "kætzer.*", "kätzer.*", "keczer.*", "keczir.*", "keczzer.*",
-    "ketzcer.*", "ketzcir.*", "ketzeer.*", "ketzer.*", "khetzer.*", "ketczer.*",
-    "haeres\\w+", "haeret.*", "heret.*", "heres\\w+",
-    "huss.*"
-]
 
 # Compile pattern for full-word match
 regex = re.compile(r'^(' + '|'.join(raw_patterns) + r')$', re.IGNORECASE)

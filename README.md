@@ -28,7 +28,7 @@ Only the **main document content** should remain in the file.
 ├── highlight_heresy.py            # Step 3
 ├── main.py               # Runs all 3 steps for each file
 └── README.md
-## 🚀 Run the Pipeline
+## 🚀 Run the Script
 From the terminal:
 ```bash
 python main.py
@@ -48,14 +48,17 @@ The following regular expressions are used to identify potentially heretical ter
 - `ketzer.*`
 - `khetzer.*`
 - `ketczer.*`
+- `keczczer.*`
 - `haeres\w+`
 - `haeret.*`
 - `heret.*`
 - `heres\w+`
+- `hæret.*`
+- `hæres\w+`
 - `huss.*`
 ## ✅ Additional Features
 - Handles historical Latin spelling by automatically converting `ſ` (long-s) to `s`
 - Generates a match count table per pattern in the final document
 - Fully compatible with large `.txt` files containing many paragraphs
 ## 💬 Questions?
-If you're unsure about input formatting or need help customizing patterns, feel free to reach out or create an issue. Enjoy hunting heresy!
+If you're unsure about input formatting or need help customizing patterns, feel free to reach out or create an issue. Enjoy Heresy Inquisition!

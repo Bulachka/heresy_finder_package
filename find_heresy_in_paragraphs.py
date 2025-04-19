@@ -2,14 +2,8 @@ import re
 import sys
 from docx import Document
 from collections import defaultdict
+from patterns import raw_patterns
 
-# Raw regex patterns (with .* or \w+ preserved)
-raw_patterns = [
-    r"chetzer.*", r"kætzer.*", r"kätzer.*", r"keczer.*", r"keczir.*", r"keczzer.*",
-    r"ketzcer.*", r"ketzcir.*", r"ketzeer.*", r"ketzer.*", r"khetzer.*", r"ketczer.*",
-    r"haeres\w+", r"haeret.*", r"heret.*", r"heres\w+",
-    r"huss.*"
-]
 
 # Compile patterns with word boundary at the start
 compiled_patterns = [re.compile(r'\b' + pat, re.IGNORECASE) for pat in raw_patterns]
