@@ -30,19 +30,12 @@ if __name__ == "__main__":
         if any(p.search(para) for p in compiled_patterns):
             doc.add_paragraph(para.strip())
             matches_found += 1
-            for pattern, raw in zip(compiled_patterns, raw_patterns):
-                count = len(pattern.findall(para))
-                pattern_stats[raw] += count
-
-    doc.add_paragraph("\nMatch counts by pattern:")
-    table = doc.add_table(rows=1, cols=2)
-    table.rows[0].cells[0].text = 'Pattern'
-    table.rows[0].cells[1].text = 'Count'
-
-    for pattern in raw_patterns:
-        row = table.add_row().cells
-        row[0].text = pattern
-        row[1].text = str(pattern_stats[pattern])
-
+    
     doc.save(output_docx)
-    print(f"✅ {matches_found} heretical paragraph(s) saved to {output_docx}")
+    # print(f"✅ {matches_found} heretical paragraph(s) saved to {output_docx}")
+
+    if matches_found:
+        print(f"✅ {matches_found} heretical paragraph(s) saved to {output_docx}")
+    else:
+        print(f"⚠️ No heretical paragraphs found in {input_file}")
+
