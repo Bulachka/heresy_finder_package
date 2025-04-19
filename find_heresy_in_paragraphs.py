@@ -6,7 +6,7 @@ from patterns import raw_patterns
 
 
 # Compile patterns with word boundary at the start
-compiled_patterns = [re.compile(r'\b' + pat, re.IGNORECASE) for pat in raw_patterns]
+compiled_patterns = [re.compile(pat, re.IGNORECASE) for pat in raw_patterns]
 pattern_stats = defaultdict(int)
 
 if __name__ == "__main__":
