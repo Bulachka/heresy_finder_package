@@ -15,16 +15,28 @@ def process_text(text):
     in_paragraph = False
 
     for line in lines:
+
         stripped = line.strip()
+
+        # Check if the line starts a new paragraph (e.g., with Roman numeral or "Nr.")
         if is_new_paragraph(stripped):
             if buffer:
-                paragraphs.append(buffer.strip())
-            buffer = stripped
+                paragraphs.append(buffer.strip())  # Save the previous paragraph
+            buffer = stripped  # Start a new paragraph
             in_paragraph = True
+
+        # If inside a paragraph, continue accumulating lines
         elif in_paragraph:
             if stripped == '':
-                continue
-            buffer += ' ' + stripped
+                continue  # Skip empty lines
+
+            # If the previous line ends with a hyphen, merge without space and remove the hyphen
+            if buffer.endswith('-'):
+                buffer = buffer[:-1] + stripped
+            else:
+                buffer += ' ' + stripped  # Normal case: add a space before appending
+
+        # If not inside a paragraph block, treat as a standalone line
         else:
             paragraphs.append(stripped)
 
