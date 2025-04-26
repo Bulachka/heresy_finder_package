@@ -20,14 +20,13 @@ Only the **main document content** should remain in the file.
 - Adds a summary table at the end of the DOCX showing how many times each pattern matched
 - Also normalizes `ſ` → `s` to ensure historical forms are matched
 ## 📁 Folder Structure
-.
-├── input_txt/                     # Place your manually cleaned TXT files here
-├── output/                        # All generated outputs go here
-├── paragraph_splitter.py          # Step 1
-├── find_heresy_in_paragraphs.py   # Step 2
-├── highlight_heresy.py            # Step 3
-├── main.py               # Runs all 3 steps for each file
-└── README.md
+📂 input_txt/                        # Place your manually cleaned TXT files here
+📂 output/                           # All generated outputs go here
+📄 paragraph_splitter.py             # Step 1
+📄 find_heresy_in_paragraphs.py      # Step 2
+📄 highlight_heresy.py               # Step 3
+📄 main.py                           # Runs all 3 steps for each file
+📄 README.md
 ## 🚀 Run the Script
 From the terminal:
 ```bash
