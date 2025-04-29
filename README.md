@@ -34,27 +34,13 @@ python main.py
 ```
 All processed and highlighted `.docx` files will be saved to the `output/` folder.
 ## 🧾 Heretical Patterns (Regex)
-The following regular expressions are used to identify potentially heretical terms in the documents:
-- `chetzer.*`
-- `kætzer.*`
-- `kätzer.*`
-- `keczer.*`
-- `keczir.*`
-- `keczzer.*`
-- `ketzcer.*`
-- `ketzcir.*`
-- `ketzeer.*`
-- `ketzer.*`
-- `khetzer.*`
-- `ketczer.*`
-- `keczczer.*`
-- `haeres\w+`
-- `haeret.*`
-- `heret.*`
-- `heres\w+`
-- `hæret.*`
-- `hæres\w+`
-- `huss.*`
+**Latin:**  
+`haeres\w+`, `haeret\w+`, `heret\w+`, `heres\w+`, `hæres\w+`, `hæret\w+`
+**Old German:**  
+`chetzer\w*`, `kætzer\w*`, `kätzer\w*`, `keczer\w*`, `keczir\w*`, `keczzer\w*`, `keczczer\w*`,  
+`ketzcer\w*`, `ketzcir\w*`, `ketzeer\w*`, `ketzer\w*`, `khetzer\w*`, `ketczer\w*`, `kettzer\w*`, `ketczir\w*`
+**Hussites:**  
+`huss\w*`
 ## ✅ Additional Features
 - Handles historical Latin spelling by automatically converting `ſ` (long-s) to `s`
 - Generates a match count table per pattern in the final document
