@@ -34,16 +34,45 @@ python main.py
 ```
 All processed and highlighted `.docx` files will be saved to the `output/` folder.
 ## 🧾 Heretical Patterns (Regex)
-**Latin:**  
+- **Latin:**  
 `haeres\w+`, `haeret\w+`, `heret\w+`, `heres\w+`, `hæres\w+`, `hæret\w+`
-**Old German:**  
+- **Old German:**  
 `chetzer\w*`, `kætzer\w*`, `kätzer\w*`, `keczer\w*`, `keczir\w*`, `keczzer\w*`, `keczczer\w*`,  
 `ketzcer\w*`, `ketzcir\w*`, `ketzeer\w*`, `ketzer\w*`, `khetzer\w*`, `ketczer\w*`, `kettzer\w*`, `ketczir\w*`
-**Hussites:**  
+- **Hussites:**  
 `huss\w*`
 ## ✅ Additional Features
 - Handles historical Latin spelling by automatically converting `ſ` (long-s) to `s`
 - Generates a match count table per pattern in the final document
 - Fully compatible with large `.txt` files containing many paragraphs
+## Processing Unstructured PDF or TXT Files
+
+If we have a PDF file or a TXT file without a clear structure (for example, raw OCR output, scanned books, or unformatted manuscripts), we use a separate script specifically designed for this situation.  
+This script searches for heretical patterns and returns text snippets with the following behavior:
+
+- It extracts **1000 characters before and after** each match to provide enough context.
+- The matched heretical word is **bolded** inside the snippet for easy recognition.
+- The same portions of text **may appear multiple times** if different patterns match nearby or overlapping areas.
+
+The results are compiled automatically into a Word (`.docx`) document.  
+Additionally, the script generates a **summary table** showing how many matches were found for each search pattern.
+
+### How to Run
+
+Make sure you have the required dependencies installed:
+
+```bash
+pip install python-docx pymupdf
+```
+
+Then run the script:
+
+```bash
+python search_heresy_in_documents.py
+```
+
+By default, all found results will be saved in the `output/search_results.docx` file.
+
+
 ## 💬 Questions?
 If you're unsure about input formatting or need help customizing patterns, feel free to reach out or create an issue. Enjoy Heresy Inquisition!
