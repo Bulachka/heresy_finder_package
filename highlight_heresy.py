@@ -42,12 +42,15 @@ for para in doc.paragraphs:
             if run.font.color and run.font.color.rgb != RGBColor(255, 0, 0):
                 r.font.color.rgb = run.font.color.rgb
 
+            # Normalize long-s before matching
+            normalized_word = word.replace("ſ", "s")
+
             # Match pattern and highlight red if it matches
-            if regex.match(word.strip()):
+            if regex.match(normalized_word.strip()):
                 r.font.color.rgb = RGBColor(255, 0, 0)
 
                 for pattern in raw_patterns:
-                    if re.fullmatch(pattern, word.strip(), re.IGNORECASE):
+                    if re.fullmatch(pattern, normalized_word.strip(), re.IGNORECASE):
                         pattern_stats[pattern] += 1
                         break
 
