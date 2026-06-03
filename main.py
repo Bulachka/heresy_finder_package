@@ -1,4 +1,5 @@
 import os
+import sys
 import subprocess
 
 # 📁 Change this if your source .txt files are located elsewhere
@@ -15,7 +16,6 @@ highlighter_script = "highlight_heresy.py"
 for filename in os.listdir(input_folder):
     if filename.endswith(".txt"):
         base_name = os.path.splitext(filename)[0]
-
         print(f"\n🔁 Processing file: {filename}")
 
         paragraphs_file = os.path.join(output_folder, f"{base_name}_paragraphs.txt")
@@ -24,26 +24,32 @@ for filename in os.listdir(input_folder):
 
         # Step 1: Split paragraphs
         print("→ Step 1: Splitting paragraphs")
-        subprocess.run([
-            "python", splitter_script,
-            os.path.join(input_folder, filename),
-            paragraphs_file
-        ])
+        try:
+            subprocess.run(["python", splitter_script,
+                os.path.join(input_folder, filename),
+                paragraphs_file], check=True)
+        except subprocess.CalledProcessError:
+            print(f"❌ Error in step 1 (splitter) for file {filename}. Stopping.")
+            sys.exit(1)
 
         # Step 2: Find heresy
         print("→ Step 2: Finding heresy")
-        subprocess.run([
-            "python", heresy_finder_script,
-            paragraphs_file,
-            heresy_file
-        ])
+        try:
+            subprocess.run(["python", heresy_finder_script,
+                paragraphs_file,
+                heresy_file], check=True)
+        except subprocess.CalledProcessError:
+            print(f"❌ Error in step 2 (heresy finder) for file {filename}. Stopping.")
+            sys.exit(1)
 
         # Step 3: Highlight heresy
         print("→ Step 3: Highlighting heresy")
-        subprocess.run([
-            "python", highlighter_script,
-            heresy_file,
-            highlighted_file
-        ])
+        try:
+            subprocess.run(["python", highlighter_script,
+                heresy_file,
+                highlighted_file], check=True)
+        except subprocess.CalledProcessError:
+            print(f"❌ Error in step 3 (highlighter) for file {filename}. Stopping.")
+            sys.exit(1)
 
 print("\n✅ Batch processing complete.")
